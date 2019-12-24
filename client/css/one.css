@@ -1,0 +1,36 @@
+body {
+    background-color:#fff;
+    font-size:16px;
+}
+.demo {
+    width: 100px;
+    height:160px;
+    background-color:#333;
+    padding:8px;
+    margin-bottom:10px;
+    overflow: hidden;
+    display:inline-block;
+
+}
+.box {
+    width:100px;
+    height:2720px;
+    display:inline-block;
+    /* position:absolute; */
+}
+
+.scroll-number {
+    height: 160px;
+    font-size: 60px;
+}
+
+.green {
+    background-color:#6fb936;
+}
+input[type="button"] {
+    -webkit-appearance:button;
+    padding:8px;
+    margin-right:5px;
+    margin-bottom: 5px;
+    z-index: 1000;
+}

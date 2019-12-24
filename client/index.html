@@ -4,17 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>GrapeCity</title>
+    <link href="./css/index.css"
+    rel="stylesheet"
+    type="text/css" />
 </head>
-<body>
-    <div>
-        <a href="./one.html"></a>
-    </div>
-    <div>0抽中不要得瑟奖</div>
-    <div>1罗曼蒂克奖</div>
-    <div>1情意绵绵奖</div>
-    <div>2运动健康奖</div>
-    <div>来杯咖啡</div>
 
+<body>
+    <div class="logo"></div>
+    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+            <div class="front">
+                <h1>小蜜蜂奖</h1>
+                <!-- 正面内容 -->
+            </div>
+            <div class="back">
+                <a href="./one.html">瑞幸咖啡</a>
+                <!-- 反面内容 -->
+            </div>
+        </div>
+    </div>
+
+    <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+        <div class="flipper">
+            <div class="front">
+                <h1>运动健康奖</h1>
+                <!-- 正面内容 -->
+            </div>
+            <div class="back">
+                <a>手环</a>
+                <!-- 反面内容 -->
+            </div>
+        </div>
+    </div>
 </body>
+<script>
+
+
+</script>
+
 </html>

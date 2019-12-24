@@ -1,0 +1,59 @@
+/* 整个容器，包括透视 */
+.flip-container {
+    perspective: 1000;
+    padding: 10px;
+
+}
+
+/* 鼠标放上去的时候翻转 */
+.flip-container:hover .flipper,
+.flip-container.hover .flipper {
+    transform: rotateY(180deg);
+}
+
+.flip-container,
+.front,
+.back {
+    width: 320px;
+    height: 280px;
+}
+
+/* 翻转速度设置 */
+.flipper {
+    transition: 1.5s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+/* 翻转页的时候隐藏背面 */
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* 前面板放在上面 */
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+    background: #470a68;
+}
+
+/* 背面初始的时候隐藏 */
+.back {
+    background: #533a6f;
+    transform: rotateY(180deg);
+}
+
+.logo {
+    height: 60px;
+    width: 100%;
+    background-image: url("logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    flex: none;
+}
