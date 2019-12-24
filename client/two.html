@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body {
+  background:#1d1d1d;
+  font-family:Asap, sans-serif;
+}
+
+.wrapper{
+  width:450px;
+  height:50px;
+  position:relative;
+  margin:auto;
+  background:#ccc;
+  overflow:hidden;
+}
+
+.wrapper::after {
+  width:448px;
+  height:48px;
+  content:"";
+  position:absolute;
+  border:solid 1px white;
+}
+
+.box{
+  width:50px;
+  height:50px;
+  position:absolute;
+  background:red;
+  font-size:25px;
+  line-height:50px;
+  text-align:center;
+  
+}
+
+
+
+.boxes {
+  position:relative;
+  left:-50px;
+}
+
+.nav {
+  position:relative;
+  text-align:center;
+ 
+  color:white;
+  font-size:20px;
+  margin:20px 0;
+}
+    </style>
+</head>
+<body>
+    <div class="nav">
+        <label><input type="checkbox" name="overflow" id="overflow" value="1"> Show overflow</label>
+        </div>
+        <div class="wrapper">
+          <div class="boxes">
+            <div class="box">0</div>
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            <div class="box">9</div>
+            <div class="box">A</div>
+            <div class="box">B</div>
+
+            <div class="box">C</div>
+            <div class="box">D</div>
+            <div class="box">E</div>
+            <div class="box">F</div>
+
+        </div>
+        </div>
+</body>
+<script src="./minified/plugins/ModifiersPlugin.min.js"></script>
+<script src="./minified/TweenMax.min.js"></script>
+
+<script src="./minified/jquery-1.10.1.min.js"></script>
+<script>
+var $overflow = $("#overflow");
+var colors = ["#f38630","#6fb936", "#ccc", "#6fb936"];
+
+//初始化每个块的颜色和位置为一排
+TweenMax.set(".box", {
+  backgroundColor:function(i) {
+    return colors[i % colors.length];
+  },
+  x:function(i) {
+    return i * 50;
+  }
+});
+
+
+TweenMax.to(".box", 5, {
+  ease: Linear.easeNone,
+  y: "+=500", //将每个块向右移动500px
+  modifiers: {
+    x: function(x) {
+      return x % 1000; //强制x值在0和500之间
+    }
+  },
+  repeat: -1
+});
+
+
+//toggle overflow
+$overflow.on("change", applyOverflow);
+
+function applyOverflow() {
+  if($overflow.prop("checked")){
+    TweenLite.set(".wrapper", {overflow:"visible"});
+  }else {
+    TweenLite.set(".wrapper", {overflow:"hidden"});
+  }
+}
+</script>
+</html>

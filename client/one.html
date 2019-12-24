@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            background-color:#fff;
+            font-size:16px;
+        }
+        #demo {
+            width:692px;
+            height:60px;
+            background-color:#333;
+            padding:8px;
+            margin-bottom:10px;
+        }
+        .box {
+            width:50px;
+            height:50px;
+            border-radius:6px;
+            margin-top:4px;
+            display:inline-block;
+            position:absolute;
+        }
+        .green {
+            background-color:#6fb936;
+        }
+        input[type="button"] {
+            -webkit-appearance:button;
+            padding:8px;
+            margin-right:5px;
+            margin-bottom: 5px;
+        }
+      </style>
+</head>
+<body>
+    <h1>This is One</h1>
+    <div id="demo">
+        <div class="box green" id="box"></div>
+     </div>
+     <input type="button" id="playBtn" value="play()" title="播放">
+        <input type="button" id="pauseBtn" value="pause()" title="暂停">
+        <input type="button" id="resumeBtn" value="resume()" title="继续">
+        <input type="button" id="reverseBtn" value="reverse()" title="返回">
+
+
+</body>
+<script src="./minified/TweenMax.min.js"></script>
+<script>
+  var playBtn = document.getElementById("playBtn"),
+            pauseBtn = document.getElementById("pauseBtn"),
+            resumeBtn = document.getElementById("resumeBtn"),
+            reverseBtn = document.getElementById("reverseBtn");
+
+            var tween = new TweenMax(box, 2, {y: 500,repeat:-1, yoyo:true});
+
+            playBtn.onclick = function() {
+			  //当前位置播放动画
+			  //如果动画播放完成, play() 无效
+		      tween.play();
+			}
+			pauseBtn.onclick = function() {
+				tween.pause();
+			}
+			resumeBtn.onclick = function() {
+				//当前位置继续动画.
+				tween.resume();
+            }
+            
+            reverseBtn.onclick = function() {
+				tween.reverse();
+			}
+    
+function getRandomIntByRandomSite() {
+        var httpRequest = new XMLHttpRequest();//第一步：建立所需的对象
+            httpRequest.open('GET', `http://localhost:3000/users/normal`, true);//第二步：打开连接  将请求参数写在url中  ps:"./Ptest.php?name=test&nameone=testone"
+            httpRequest.send();//第三步：发送请求  将请求参数写在URL中
+            /**
+             * 获取数据后的处理程序
+             */
+            httpRequest.onreadystatechange = function () {
+                if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+                    var json = httpRequest.responseText;//获取到json字符串，还需解析
+
+                    return json;
+                }
+            };
+}
+
+let aa = getRandomIntByRandomSite();
+console.log(aa);
+// console.log()
+
+</script>
+</html>
