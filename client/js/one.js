@@ -15,28 +15,32 @@ var tween = new TweenMax(boxs, 4, {
 function temp12() {
     // 需要scroll的长度
     let numberarray = [3, 6, 9];
-    TweenMax.to(box0, 4, {
+    let timearray = [];
+    numberarray.forEach( (item) => {
+        timearray.push(item*4/16);
+    } )
+    TweenMax.to(box0, timearray[0], {
         y: `-${numberarray[0] * 160}px`,
-        ease: Bounce.easeOut, 
+        ease: Linear.easeNone, 
         repeat: 0,
         startAt:{y:0}
     });
-    TweenMax.to(box1, 4, {
+    TweenMax.to(box1, timearray[1], {
         y: `-${numberarray[1] * 160}px`,
-        ease: Bounce.easeOut,
+        ease: Linear.easeNone,
         repeat: 0,
         startAt:{y:0}
 
     });
-    TweenMax.to(box2, 4, {
+    TweenMax.to(box2, timearray[2], {
         y: `-${numberarray[2] * 160}px`,
-        ease: Bounce.easeOut, repeat: 0,
+        ease: Linear.easeNone, repeat: 0,
         startAt:{y:0}
     });
 
 }
 
-pauseBtn.onclick = function () {
+function numberPause() {
     tween.pause();
     let mytime = tween.time();
     tween.kill();
@@ -54,6 +58,9 @@ pauseBtn.onclick = function () {
     });
 }
 
+pauseBtn.onclick = function () {
+    numberPause();
+}
 
 
 restartBtn.onclick = function () {

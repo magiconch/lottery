@@ -10,8 +10,22 @@ body {
     margin-bottom:10px;
     overflow: hidden;
     display:inline-block;
+    background: #533a6f;
+    line-height: 160px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 160px;
+    color: white;
+
 
 }
+
+.display {
+    position: absolute;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%,-50%);
+}
+
 .box {
     width:100px;
     height:2720px;
@@ -25,7 +39,6 @@ body {
 }
 
 .green {
-    background-color:#6fb936;
 }
 input[type="button"] {
     -webkit-appearance:button;

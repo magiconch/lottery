@@ -37,12 +37,12 @@ body {
   transition: top 1s;
   text-align: center;
   top: 0px;
-  animation-name: roll;
+  /* animation-name: roll;
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
   animation-fill-mode: backwards;
-  animation-direction: normal;
+  animation-direction: normal; */
 }
 
 .display-number {
