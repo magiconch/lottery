@@ -1,3 +1,13 @@
+body {
+    background: #533a6f;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
 /* 整个容器，包括透视 */
 .flip-container {
     perspective: 1000;
@@ -39,12 +49,23 @@
     z-index: 2;
     /* for firefox 31 */
     transform: rotateY(0deg);
-    background: #470a68;
+    background: #624582;
+    color: aliceblue;
+}
+
+.fonts {
+    font-size: 60px;
+}
+
+a, a:hover, a:active {
+    text-decoration: none;
+    color:inherit;
 }
 
 /* 背面初始的时候隐藏 */
 .back {
-    background: #533a6f;
+    background: #624582;
+    color: aliceblue;
     transform: rotateY(180deg);
 }
 
