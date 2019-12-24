@@ -8,3 +8,6 @@
 
 ## server
 记录获奖的number， 并打印log
+
+## lottery_low
+实现了循环滚动，但是无法衔接后续行为

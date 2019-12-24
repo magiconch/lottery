@@ -1,0 +1,103 @@
+body {
+  background: #533a6f;
+}
+
+.number-content {
+  line-height: 1.6;
+}
+
+.prize-title {
+  font-size: 60px;
+  color: white;
+  margin: 10px;
+  border: 2px;
+  padding: 10px;
+}
+
+.scroll-number-container {
+  width: 480px;
+  height: 160px;
+  background: #533a6f;
+  line-height: 160px;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 160px;
+  overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  transform: translate(-50%,-50%);
+}
+
+.scroll-number {
+  width: 160px;
+  height: 400px;
+  color: white;
+  float: left;
+  position: relative;
+  transition: top 1s;
+  text-align: center;
+  top: 0px;
+  animation-name: roll;
+  animation-duration: 2s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+  animation-direction: normal;
+}
+
+.display-number {
+  /* background: #533a6f; */
+  color: white;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 60px;
+  text-align: center;
+  top: 0px;
+  border-radius: 50%;
+  border: 2px solid;
+  height: 100px;
+  width: 100px;
+  margin: 10px;
+  padding: 10px;
+  display: inline-block;
+}
+
+#run-it {
+  outline:none;
+  height: 60px;
+  color: white;
+  cursor: pointer;
+  background: #533a6f; 
+  border: 0px;
+  font-size: 150%;
+  padding: 0.5em;
+  padding-right: 2em;
+}
+
+#select-value {
+  outline:none;
+  height: 60px;
+  color: white;
+  cursor: pointer;
+  background: #533a6f; 
+  font-size: 150%;
+  padding: 0.5em;
+  padding-right: 2em;
+  -webkit-appearance: none;
+  
+}
+
+#show-result {
+  position: absolute;
+  top: 60%;
+  left: 40%;
+}
+  
+@keyframes roll {
+  0% {
+      transform: translate(0, 0px);
+  }
+
+  100% {
+      transform: translate(0, -2400px);
+  }
+}
