@@ -4,7 +4,7 @@ var box0 = document.getElementById("box0"),
     pauseBtn = document.getElementById("pauseBtn"),
     restartBtn = document.getElementById("restartBtn");
 let boxs = [box0, box1, box2];
-var tween = new TweenMax(boxs, 4, {
+var tween = new TweenMax(boxs, 2, {
     y: "-2560px",
     ease: Linear.easeNone,
     repeat: -1,
@@ -17,7 +17,7 @@ function temp12() {
     let numberarray = [3, 6, 9];
     let timearray = [];
     numberarray.forEach( (item) => {
-        timearray.push(item*4/16);
+        timearray.push(item*2/16);
     } )
     TweenMax.to(box0, timearray[0], {
         y: `-${numberarray[0] * 160}px`,
@@ -44,7 +44,7 @@ function numberPause() {
     tween.pause();
     let mytime = tween.time();
     tween.kill();
-    let stime = 4 - mytime;
+    let stime = 2 - mytime;
     tween2 = new TweenMax(boxs, stime, {
         y: "-2560px",
         ease: Linear.easeNone,

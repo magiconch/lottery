@@ -1,20 +1,26 @@
 body {
     background-color:#fff;
     font-size:16px;
+    background-size: auto;
+
+    background-image: url("coffee.jpg");
+
+    flex: none;
 }
 .demo {
     width: 100px;
     height:160px;
-    background-color:#333;
     padding:8px;
+    border-radius: 20%;
     margin-bottom:10px;
     overflow: hidden;
     display:inline-block;
-    background: #533a6f;
+    background: #393E46;
     line-height: 160px;
     font-family: Consolas, Monaco, monospace;
     font-size: 160px;
-    color: white;
+    color: #f7f7f7;
+    text-align: center;
 
 
 }
