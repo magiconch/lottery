@@ -61,7 +61,7 @@ class LuckyIdList {
 
 
 }
-let myList = new LuckyIdList(300);
+let myList = new LuckyIdList(270);
 
 var numberLog = fs.openSync('./public/number.txt', 'w');
 

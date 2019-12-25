@@ -11,3 +11,10 @@
 
 ## lottery_low
 实现了循环滚动，但是无法衔接后续行为
+
+server => 储存number
+
+style => animation, css
+
+bgm => 激昂的bgm 好运来
+
