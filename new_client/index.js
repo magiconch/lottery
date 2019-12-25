@@ -78,7 +78,7 @@ class Game{
 
     toggleOverlay(){
         var overlay = this._num_scroll.querySelector('.overlay');
-        if(this.isRuning){
+        if(this._step !== 2){
             overlay.classList.add('hide');
         }else{
             overlay.classList.remove('hide');
