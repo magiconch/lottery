@@ -6,6 +6,7 @@ body {
     width: 100vw;
     display: flex;
     flex-direction: column;
+    font-family: Consolas, Monaco, monospace;
 }
 
 /* 整个容器，包括透视 */
@@ -42,6 +43,10 @@ body {
     position: absolute;
     top: 0;
     left: 0;
+    border: 2px solid aliceblue;
+    border-radius:10px;
+    text-align: center;
+    line-height: 250px;
 }
 
 /* 前面板放在上面 */
