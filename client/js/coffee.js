@@ -1,4 +1,5 @@
 var box0 = document.getElementById("box0"),
+    title = document.getElementById("title"),
     box1 = document.getElementById("box1"),
     box2 = document.getElementById("box2"),
     pauseBtn = document.getElementById("pauseBtn"),
@@ -10,7 +11,14 @@ var tween = new TweenMax(boxs, 2, {
     repeat: -1,
     paused: true
 });
+
+TweenMax.to(title, 4, { 
+    x: "1800px",
+    ease: SlowMo.ease
+})
+
 // ease:Bounce.easeOut,
+
 
 function temp12() {
     // 需要scroll的长度
@@ -40,12 +48,27 @@ function temp12() {
 
 }
 
+function getNumber() {
+
+}
+
+function output() {
+    TweenMax.staggerTo(".box", 1, {rotation:360, y:100}, 0.5);
+}
+
+function calDistance(num) {
+    let result = [];
+    result.push(num % 256);
+    result.push(Math.floor(num) % 10);
+    result.push(num % 16);
+}
+
 function numberPause() {
     tween.pause();
     let mytime = tween.time();
     tween.kill();
     let stime = 2 - mytime;
-    tween2 = new TweenMax(boxs, stime, {
+    TweenMax.to(boxs, stime, {
         y: "-2560px",
         ease: Linear.easeNone,
         repeat: 0,
