@@ -12,6 +12,8 @@ var rewards = [
     {name: "悦椿温泉酒店", count: 1},
 ]
 
+const animationTime = 2;
+
 class Game{
     _isRuning= false;
     _btn_go = document.getElementById("go");
@@ -144,7 +146,7 @@ var box0 = document.getElementById("box0"),
     box1 = document.getElementById("box1"),
     box2 = document.getElementById("box2");
 let boxs = [box0, box1, box2];
-var tween = new TweenMax(boxs, 2, {
+var tween = new TweenMax(boxs, animationTime, {
     y: "-3200px",
     ease: Linear.easeNone,
     repeat: -1,
@@ -157,7 +159,7 @@ function temp12(num) {
     let numberarray = calDistance(num);
     let timearray = [];
     numberarray.forEach( (item) => {
-        timearray.push(item*2/16);
+        timearray.push(item*animationTime/16);
     } )
     TweenMax.to(box0, timearray[0], {
         y: `-${numberarray[0] * 200}px`,
@@ -194,7 +196,7 @@ function numberPause(num) {
     tween.pause();
     let mytime = tween.time();
     tween.kill();
-    let stime = 2 - mytime;
+    let stime = animationTime - mytime;
     TweenMax.to(boxs, stime, {
         y: "-3200px",
         ease: Linear.easeNone,
