@@ -52,9 +52,9 @@ function getNumber() {
 
 }
 
-function output() {
-    TweenMax.staggerTo(".box", 1, {rotation:360, y:100}, 0.5);
-}
+// function output() {
+//     TweenMax.staggerTo(".box", 1, {rotation:360, y:100}, 0.5);
+// }
 
 function calDistance(num) {
     let result = [];

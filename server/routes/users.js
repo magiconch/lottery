@@ -2,6 +2,7 @@ var express = require('express');
 var fs = require("fs");
 var path = require('path');
 var router = express.Router();
+var logger = require('morgan');
 
 
 class RandomTool {
@@ -37,24 +38,29 @@ class LuckyIdList {
       this.idList = [];
   }
 
-  push (item) {
+  __push (item) {
       this.idList.push(item);
   }
 
-  includes(item) {
+  __includes(item) {
       this.idList.includes(item);
   }
 
   reqNumber(count) {
-    return this.generater();
+    let result = [];
+    for (let index = 0; index < count; index++) {
+      result.push(this.generater())
+      
+    }
+    return result;
   }
 
   generater() {
     let result = RandomTool.getRandomIntByFloor(this.maxNumber);
-    while (this.includes(result)) {
+    while (this.__includes(result)) {
       result = RandomTool.getRandomIntByFloor(this.maxNumber);
     }
-    this.push(result);
+    this.__push(result);
 
     return result;
   }
@@ -63,15 +69,28 @@ class LuckyIdList {
 }
 let myList = new LuckyIdList(270);
 
+var logFile = fs.createWriteStream('./numbers.log', {
+  "flags": "a"
+});
+
 var numberLog = fs.openSync('./public/number.txt', 'w');
 
+logger.format('joke', '[joke] :method :url :status');
 /* GET users listing. */
-router.get('/normal', function(req, res, next) {
-  let num = myList.reqNumber(1);
-  let fileNum = num.toString() + ' ';
-  // fs.writeFile(numberLog, fileNum);
-  res.json( num.toString());
-
+router.get('/', function(req, res, next) {
+  let myUrl = req.url;
+  let temp = myUrl.split('count=')[1].split('&');
+  let name = temp[1].split('name=')[1];
+  let count = parseInt(temp[0]);
+  let nums = myList.reqNumber(count);
+  console.log(`name: ${name}, nums: ${nums}`)
+  // let fileNum = num.toString() + ' ';
+  // logger('joke');
+  // express.configure(function(){
+  //   express.logger({stream: logFile});
+  // });  
+  // fs.write(numberLog, fileNum);
+  res.json( nums );
 });
 
 module.exports = router;

@@ -35,10 +35,17 @@ class Game{
                 this.currentReward = this.currentReward + 1;
                 break;
             case 1:
+                this.numberRoll();
+                break;
             case 2:
                 this.isRuning = !this.isRuning;
+                numberPause(this._luckeyNumbers[this._luckeyNumbers.length-1]);
                 break;
         }
+    }
+
+    numberRoll() {
+        tween.restart();
     }
 
     get isRuning(){
@@ -68,28 +75,28 @@ class Game{
     }
 
     output(){
-        if(this._isRuning){
-           return; 
-        }
+        // if(this._isRuning){
+        //    return; 
+        // }
         this.createNumberCard(this._luckeyNumbers);
         this._ouputPanel.style.left = 0;
 
     }
 
     toggleOverlay(){
-        var overlay = this._num_scroll.querySelector('.overlay');
-        if(this._step !== 2){
-            overlay.classList.add('hide');
-        }else{
-            overlay.classList.remove('hide');
-        }
+        // var overlay = this._num_scroll.querySelector('.overlay');
+        // if(this._step !== 2){
+        //     overlay.classList.add('hide');
+        // } else{
+        //     overlay.classList.remove('hide');
+        // }
     }
 
     toggleAnimation(){
         var uls = this._num_scroll.querySelectorAll(".num_card");
         for (var i = 0; i < uls.length; i++) {
             if (this.isRuning) {
-                uls[i].style.animation = "3s rowup linear infinite normal"
+                uls[i].style.animation = "3s rowup linear infinite normal";
             } else {
                 uls[i].style.removeProperty("animation");
             }
@@ -101,27 +108,104 @@ class Game{
         nums.forEach(num => {
             var div = document.createElement("div");
             div.classList.add("number_card");
-            div.textContent = num;
+            div.textContent = this.stringFormat(num);
             frage.appendChild(div);
         });
         this._ouputPanel.appendChild(frage);
     }
+
+    stringFormat(rn) {
+        if (typeof rn === 'string') {
+            rn = parseInt(rn);
+        }
+        let myNum = rn.toString(16).toUpperCase();
+        while(myNum.length < 3) {
+            myNum = '0' + myNum;
+        }
+        return myNum;
+    }
 }
 
 const fetchLuckyNumber = (count, name, cb) => {
-    // var httpRequest = new XMLHttpRequest();
-    // httpRequest.open('GET', `http://localhost:9090/?count=${count}&name=${name}`, true);
-    // httpRequest.send();
-    // httpRequest.onreadystatechange = function () {
-    //     if (httpRequest.readyState == 4 && httpRequest.status == 200) {
-    //         var json = httpRequest.responseText;
-    //         cb(parseFloat(json));
-    //     }
-    // };
-    setTimeout(function() {
-        cb(["001", "002","003","004","A01","0EA","AB1","021","345","451"]);
-    }, 500);
+    var httpRequest = new XMLHttpRequest();
+    httpRequest.open('GET', `http://localhost:9090/users?count=${count}&name=${name}`, true);
+    httpRequest.send();
+    httpRequest.onreadystatechange = function () {
+        if (httpRequest.readyState == 4 && httpRequest.status == 200) {
+            var json = httpRequest.responseText;
+            json = json.slice(1,json.length-1);
+            let jsons = json.split(',');
+            cb(jsons);
+        }
+    };
+}
+
+var box0 = document.getElementById("box0"),
+    box1 = document.getElementById("box1"),
+    box2 = document.getElementById("box2");
+let boxs = [box0, box1, box2];
+var tween = new TweenMax(boxs, 2, {
+    y: "-3200px",
+    ease: Linear.easeNone,
+    repeat: -1,
+    paused: true
+});
+
+function temp12(num) {
+    
+    // 需要scroll的长度
+    let numberarray = calDistance(num);
+    let timearray = [];
+    numberarray.forEach( (item) => {
+        timearray.push(item*2/16);
+    } )
+    TweenMax.to(box0, timearray[0], {
+        y: `-${numberarray[0] * 200}px`,
+        ease: Linear.easeNone, 
+        repeat: 0,
+        startAt:{y:0}
+    });
+    TweenMax.to(box1, timearray[1], {
+        y: `-${numberarray[1] * 200}px`,
+        ease: Linear.easeNone,
+        repeat: 0,
+        startAt:{y:0}
+
+    });
+    TweenMax.to(box2, timearray[2], {
+        y: `-${numberarray[2] * 200}px`,
+        ease: Linear.easeNone, repeat: 0,
+        startAt:{y:0}
+    });
+
+
+}
+
+function calDistance(num) {
+    num = parseInt(num);
+    let result = [];
+    result.push(Math.floor(num/256));
+    result.push(Math.floor(num/16));
+    result.push(num % 16);
+    return result;
+}
+
+function numberPause(num) {
+    tween.pause();
+    let mytime = tween.time();
+    tween.kill();
+    let stime = 2 - mytime;
+    TweenMax.to(boxs, stime, {
+        y: "-3200px",
+        ease: Linear.easeNone,
+        repeat: 0,
+        onComplete: () => {
+            boxs.forEach((item) => {
+                item.style = "";
+            });
+            temp12(num);
+        }
+    });
 }
 
 window.game = new Game();
-
