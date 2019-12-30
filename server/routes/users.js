@@ -2,8 +2,17 @@ var express = require('express');
 var fs = require("fs");
 var path = require('path');
 var router = express.Router();
-var logger = require('morgan');
+var winston=require('winston');
 
+var logger = winston.createLogger({
+  transports: [
+      new (winston.transports.Console)(),
+      new (winston.transports.File)({ 
+          filename: './apkAnalysis.log',
+          timestamp:'true', 
+          maxsize: 10485760, //日志文件的大小
+          maxFiles: 10 })
+  ]});
 
 class RandomTool {
 
@@ -43,7 +52,7 @@ class LuckyIdList {
   }
 
   __includes(item) {
-      this.idList.includes(item);
+    return  this.idList.includes(item);
   }
 
   reqNumber(count) {
@@ -61,7 +70,6 @@ class LuckyIdList {
       result = RandomTool.getRandomIntByFloor(this.maxNumber);
     }
     this.__push(result);
-
     return result;
   }
 
@@ -69,28 +77,20 @@ class LuckyIdList {
 }
 let myList = new LuckyIdList(270);
 
-var logFile = fs.createWriteStream('./numbers.log', {
-  "flags": "a"
-});
-
-var numberLog = fs.openSync('./public/number.txt', 'w');
-
-logger.format('joke', '[joke] :method :url :status');
-/* GET users listing. */
 router.get('/', function(req, res, next) {
   let myUrl = req.url;
   let temp = myUrl.split('count=')[1].split('&');
   let name = temp[1].split('name=')[1];
   let count = parseInt(temp[0]);
   let nums = myList.reqNumber(count);
-  console.log(`name: ${name}, nums: ${nums}`)
+  res.json( nums );
+  console.log(`name: ${name}, nums: ${nums}`);
   // let fileNum = num.toString() + ' ';
   // logger('joke');
   // express.configure(function(){
   //   express.logger({stream: logFile});
   // });  
   // fs.write(numberLog, fileNum);
-  res.json( nums );
 });
 
 module.exports = router;

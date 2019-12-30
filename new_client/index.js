@@ -12,7 +12,7 @@ var rewards = [
     {name: "悦椿温泉酒店", count: 1},
 ]
 
-const animationTime = 2;
+const animationTime = 1;
 
 class Game{
     _isRuning= false;
@@ -81,8 +81,11 @@ class Game{
         //    return; 
         // }
         this.createNumberCard(this._luckeyNumbers);
+        this._ouputPanel.lastChild.style = 'position: absolute; left: -3000px;';
         this._ouputPanel.style.left = 0;
-
+        sleep(1500).then(() => {
+            this._ouputPanel.lastChild.style = '';
+        });
     }
 
     toggleOverlay(){
@@ -126,6 +129,10 @@ class Game{
         }
         return myNum;
     }
+}
+
+function sleep (time) {
+    return new Promise((resolve) => setTimeout(resolve, time));
 }
 
 const fetchLuckyNumber = (count, name, cb) => {
