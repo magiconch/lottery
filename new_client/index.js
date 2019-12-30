@@ -113,7 +113,9 @@ class Game{
         nums.forEach(num => {
             var div = document.createElement("div");
             div.classList.add("number_card");
-            div.textContent = this.stringFormat(num);
+            var childDiv = document.createElement("div");
+            childDiv.textContent = this.stringFormat(num);
+            div.appendChild(childDiv);
             frage.appendChild(div);
         });
         this._ouputPanel.appendChild(frage);
